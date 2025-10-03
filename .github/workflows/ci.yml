@@ -22,6 +22,10 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Dar permisos a mvnw
+        working-directory: ./backend/productos
+        run: chmod +x mvnw
+
       - name: Ejecutar tests con JaCoCo
         working-directory: ./backend/productos
         run: ./mvnw clean verify
@@ -46,6 +50,10 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
+
+      - name: Dar permisos a mvnw
+        working-directory: ./backend/inventario
+        run: chmod +x mvnw
 
       - name: Ejecutar tests con JaCoCo
         working-directory: ./backend/inventario
