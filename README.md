@@ -157,7 +157,7 @@ sequenceDiagram
 
 ```bash
 # 1. Clonar repositorio
-git clone <repository-url>
+git clone [<repository-url](https://github.com/ElSebastianLopez/PruebaSenior.git)>]
 cd microservices-cloud
 
 # 2. Ejecutar despliegue automatizado
