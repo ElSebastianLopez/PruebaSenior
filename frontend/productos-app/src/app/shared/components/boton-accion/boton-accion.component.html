@@ -1,0 +1,15 @@
+<button
+  *ngIf="tipo === 'icono'; else textoBtn"
+  mat-icon-button
+  [color]="color"
+  (click)="accion.emit()"
+>
+  <mat-icon>{{ icono }}</mat-icon>
+</button>
+
+<ng-template #textoBtn>
+  <button mat-raised-button [color]="color" (click)="accion.emit()">
+    <mat-icon>{{ icono }}</mat-icon>
+    {{ label }}
+  </button>
+</ng-template>

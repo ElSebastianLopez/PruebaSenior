@@ -1,0 +1,46 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+ 
+  color: #272343;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.header {
+  background-color: #bae8e8;
+  color: #2d334a;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contenido {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.tabla-contenedor {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 90%;
+    width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-bottom: 1rem;
+  color: #2d334a;
+  font-size: 1.5rem;
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #bae8e8;
+  color: #2d334a;
+  font-size: 0.9rem;
+}

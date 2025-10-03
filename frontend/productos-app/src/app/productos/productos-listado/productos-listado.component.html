@@ -1,0 +1,25 @@
+<header class="header">
+  <h1>Prueba Dev Full-Stack Semi-Sr</h1>
+</header>
+
+<main class="contenido">
+
+  <section class="tabla-contenedor">
+    <h2>Listado de productos</h2>
+    <app-boton-accion
+    tipo="texto"
+    icono="add"
+    color="primary"
+    label="Agregar Producto"
+    (accion)="abrirFormularioCreacion()"
+    style="margin-bottom: 1rem;"
+  ></app-boton-accion>
+    <app-tabla [columnas]="columnas" [datos]="datosTabla" [totalItems]="total" [pageSize]="pageSize"
+      [pageIndex]="pageIndex" (paginaCambiada)="onPaginaCambiada($event)" (accion)="onAccion($event)">>
+    </app-tabla>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>© 2025 Proyecto de prueba – Sebastian Lopez Giraldo</p>
+</footer>

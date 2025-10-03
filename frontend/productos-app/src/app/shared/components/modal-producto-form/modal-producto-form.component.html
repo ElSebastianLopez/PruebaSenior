@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>{{ modo === 'crear' ? 'Crear Producto' : 'Editar Producto' }}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form" class="form-grid">
+    <label>
+      Nombre:
+      <input matInput formControlName="nombre" />
+    </label>
+    <label>
+      Descripción:
+      <textarea matInput formControlName="descripcion"></textarea>
+    </label>
+    <label>
+      Precio:
+      <input type="number" matInput formControlName="precio" />
+    </label>
+    <label>
+      Categoría:
+      <input matInput formControlName="categoria" />
+    </label>
+    <label>
+      Cantidad:
+      <input type="number" matInput formControlName="cantidad" />
+    </label>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cerrar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="guardar()">Guardar</button>
+</mat-dialog-actions>

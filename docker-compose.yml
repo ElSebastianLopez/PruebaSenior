@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack-cloud
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3,apigateway,secretsmanager,logs,iam
+      - DEBUG=1
+      - PERSISTENCE=1
+    volumes:
+      - "./.localstack:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - cloud-net
+
+  postgres:
+    image: postgres:14
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: pruebaDb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./backend/productos/init.sql:/docker-entrypoint-initdb.d/init.sql 
+    networks:
+      - cloud-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  productos:
+    build: ./backend/productos
+    container_name: productos-service
+    environment:
+      - APP_PORT=8081
+      - ENV=dev
+      - MICRO=productos
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=pruebaDb
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - INVENTARIO_SERVICE_URL=http://inventario:8082/dev/inventario/api/v1/
+      - API_KEY=123456ABC
+    ports:
+      - "8081:8081"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - cloud-net
+
+  inventario:
+    build: ./backend/inventario
+    container_name: inventario-service
+    environment:
+      - APP_PORT=8082
+      - ENV=dev
+      - MICRO=inventario
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=pruebaDb
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - API_KEY=123456ABC
+    ports:
+      - "8082:8082"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - cloud-net
+
+volumes:
+  postgres-data:
+
+networks:
+  cloud-net:
+    driver: bridge
