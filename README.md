@@ -226,7 +226,7 @@ ng serve
 
 | Servicio | URL | Descripción |
 |----------|-----|-------------|
-| Frontend | http://localhost:4566/productos-app/ | Aplicación Angular |
+| Frontend | http://localhost:4566/productos-app/index.html | Aplicación Angular |
 | Productos API | http://localhost:8081/dev/productos | API REST Productos |
 | Inventario API | http://localhost:8082/dev/inventario | API REST Inventario |
 | Swagger Productos | http://localhost:8081/dev/productos/swagger-ui/index.html | Documentación OpenAPI |
